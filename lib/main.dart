@@ -67,7 +67,7 @@ void networkTables() async {
   }
 }
 
-// void toggleFullScreen(bool fullScreenState) { 
+// void toggleFullScreen(bool fullScreenState) {
 //   fullScreenState = !fullScreenState;
 //   if (fullScreenState) {
 //     FullscreenWindow.enterFullscreen();
