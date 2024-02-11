@@ -63,8 +63,12 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
+      - name: Install full_coverage
+        run: dart pub global activate full_coverage
+
       - name: Generate full coverage test
-        run: dart run full_coverage
+        run: dart pub global run full_coverage
+
 
       - name: Run tests
         run: dart run coverage:test_with_coverage
