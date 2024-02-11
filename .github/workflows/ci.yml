@@ -17,16 +17,10 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Setup dart
-        uses: dart-lang/setup-dart@v1
+      - uses: subosito/flutter-action@v2
         with:
-          sdk: 3.2.6
-
-      - name: Setup Flutter
-        uses: flutter-actions/setup-flutter@v2
-        with:
-          channel: stable
-          version: 3.0.2
+          flutter-version: "3.0.0"
+          channel: 'stable'
 
       - name: Install dependencies
         run: flutter pub get
@@ -42,16 +36,10 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Setup dart
-        uses: dart-lang/setup-dart@v1
+      - uses: subosito/flutter-action@v2
         with:
-          sdk: 3.2.6
-
-      - name: Setup Flutter
-        uses: flutter-actions/setup-flutter@v2
-        with:
-          channel: stable
-          version: 3.0.2
+          flutter-version: "3.0.0"
+          channel: 'stable'
 
       - name: Install dependencies
         run: flutter pub get
@@ -67,16 +55,10 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Setup dart
-        uses: dart-lang/setup-dart@v1
+      - uses: subosito/flutter-action@v2
         with:
-          sdk: 3.2.6
-
-      - name: Setup Flutter
-        uses: flutter-actions/setup-flutter@v2
-        with:
-          channel: stable
-          version: 3.0.2
+          flutter-version: "3.0.0"
+          channel: 'stable'
 
       - name: Install dependencies
         run: flutter pub get
