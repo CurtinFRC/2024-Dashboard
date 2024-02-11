@@ -3,7 +3,6 @@ import 'package:nt4/nt4.dart';
 import 'package:logger/logger.dart';
 // import 'package:fullscreen_window/fullscreen_window.dart';
 
-
 void main() {
   // var fullScreenState = false;
   // toggleFullScreen(fullScreenState);
