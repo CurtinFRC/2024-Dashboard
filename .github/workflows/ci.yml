@@ -17,9 +17,6 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Setup dart
-        uses: dart-lang/setup-dart@v1
-
       - name: Setup Flutter
         uses: flutter-actions/setup-flutter@v2
 
@@ -37,9 +34,6 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Setup dart
-        uses: dart-lang/setup-dart@v1
-
       - name: Setup Flutter
         uses: flutter-actions/setup-flutter@v2
 
@@ -56,9 +50,6 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
-
-      - name: Setup dart
-        uses: dart-lang/setup-dart@v1
 
       - name: Setup Flutter
         uses: flutter-actions/setup-flutter@v2
