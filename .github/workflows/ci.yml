@@ -20,8 +20,11 @@ jobs:
       - name: Setup dart
         uses: dart-lang/setup-dart@v1
 
+      - name: Setup Flutter
+        uses: flutter-actions/setup-flutter@v2
+
       - name: Install dependencies
-        run: dart pub get
+        run: flutter pub get
 
       - name: Check formatting
         run: dart format -o none --set-exit-if-changed lib/* test/*
@@ -37,8 +40,11 @@ jobs:
       - name: Setup dart
         uses: dart-lang/setup-dart@v1
 
+      - name: Setup Flutter
+        uses: flutter-actions/setup-flutter@v2
+
       - name: Install dependencies
-        run: dart pub get
+        run: flutter pub get
 
       - name: Run analysis
         run: dart analyze
@@ -54,8 +60,11 @@ jobs:
       - name: Setup dart
         uses: dart-lang/setup-dart@v1
 
+      - name: Setup Flutter
+        uses: flutter-actions/setup-flutter@v2
+
       - name: Install dependencies
-        run: dart pub get
+        run: flutter pub get
 
       - name: Generate full coverage test
         run: dart run full_coverage
