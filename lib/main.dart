@@ -1,50 +1,103 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_box_transform/flutter_box_transform.dart';
+// import 'package:flutter_box_transform/flutter_box_transform.dart';
 import 'package:nt4/nt4.dart';
 import 'package:logger/logger.dart';
 import 'package:flutter/services.dart'; // For SystemChrome and SystemUiMode
 import 'package:dotted_border/dotted_border.dart'; // For Dotted Borders
 
 void main() {
+  var logger = Logger();
+  Map<String, dynamic> widget = {"name": "Pink Widget", "Draggable": true, };
+  widget['Type'] = "RPM";
+
+  List<Map<String, dynamic>> orderedList = [widget];
+
+  // Accessing values in order
+  StringBuffer logMessage = StringBuffer();
+  for (var entry in orderedList) {
+    for (var key in entry.keys) {
+      logMessage.write('$key: ${entry[key]} \n');
+    }
+  }
+  logger.i(logMessage);
+
   // networkTables();
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  MyApp({Key? key}) : super(key: key);
+
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
     var windowWidth = MediaQuery.of(context).size.width;
     var windowHeight = MediaQuery.of(context).size.height;
+    var logger = Logger();
+
 
     return MaterialApp(
       home: Scaffold(
+        key: _scaffoldKey, // Assign the GlobalKey to the Scaffold
         appBar: AppBar(
           title: const Text('FRC 4788 Dashboard'),
         ),
-        body: Stack(
-          children: <Widget>[
-            Draggable(
-              feedback: PinkWidget(
-                windowHeight: windowHeight,
-                windowWidth: windowWidth,
+        drawer: Drawer(
+          backgroundColor: Colors.grey,
+          child: Column(
+            children: [
+              Draggable(
+                data: DragData(id: 'pinkWidget'),
+                feedback: PinkWidget(
+                  windowHeight: windowHeight,
+                  windowWidth: windowWidth,
+                ),
+                childWhenDragging: PinkWidgetDraggingFiller(
+                  windowHeight: windowHeight,
+                  windowWidth: windowWidth,
+                ),
+                child: PinkWidget(
+                  windowHeight: windowHeight,
+                  windowWidth: windowWidth,
+                ),
+                onDragStarted: () {
+                  // Close the drawer when dragging starts
+                  _scaffoldKey.currentState?.openEndDrawer();
+                },
               ),
-              childWhenDragging: PinkWidgetDraggingFiller(
-                windowHeight: windowHeight,
-                windowWidth: windowWidth,
-              ),
-              child: PinkWidget(
-                windowHeight: windowHeight,
-                windowWidth: windowWidth,
-              ),
-            ),
-            // const PinkWidgetDraggingFiller(),
-          ],
+            ],
+          ),
+        ),
+        body: DragTarget<DragData>(
+          builder: (BuildContext context, List<DragData?> candidateData,
+              List<dynamic> rejectedData) {
+            // Build the UI for the DragTarget
+            return Container(
+              color: const Color.fromARGB(255, 255, 124, 168),
+              width: windowWidth,
+              height: windowHeight,
+            );
+          },
+          onWillAccept: (dynamic data) {
+            // Always return true to accept all data
+            // activeWidgets.append(data);
+            return true;
+          },
+          onAccept: (dynamic data) {
+            logger.i('Accepted data: $data');
+            // Handle the accepted data
+          },
         ),
       ),
     );
   }
+}
+
+class DragData {
+  final String id;
+
+  DragData({required this.id});
 }
 
 class PinkWidget extends StatefulWidget {
