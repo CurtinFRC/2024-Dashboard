@@ -10,11 +10,13 @@ void main() {
   Map<String, dynamic> widget = {"name": "Pink Widget", "Draggable": true, };
   widget['Type'] = "RPM";
 
-  List<Map<String, dynamic>> orderedList = [widget];
+  List<Map<String, dynamic>> activeWidgets = [widget];
+
+  activeWidgets.add({"name": "Blue Widget", "Draggable": true, "Type": "Voltage"});
 
   // Accessing values in order
   StringBuffer logMessage = StringBuffer();
-  for (var entry in orderedList) {
+  for (var entry in activeWidgets) {
     for (var key in entry.keys) {
       logMessage.write('$key: ${entry[key]} \n');
     }
